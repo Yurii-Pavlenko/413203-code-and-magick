@@ -35,15 +35,9 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.translate(0, 240); // new point 'zero'
   // Cycle printing blue histogram with random transparency
   for (var k = 0; k < times.length; k++) {
+    ctx.fillStyle = 'black';
     ctx.fillText(names[k], initialX + indent * k, indent / 2);
-    if (names[k] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1.0)';
-      ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
-      ctx.fillStyle = 'black';
-    } else {
-      ctx.fillStyle = 'rgba( 0, 0, 255, ' + Math.random() + ')';
-      ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
-      ctx.fillStyle = 'black';
-    }
+    ctx.fillStyle = names[k] === 'Вы' ? 'rgba(255, 0, 0, 1.0)' : ('rgba( 0, 0, 255, ' + Math.random() + ')');
+    ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
   }
 };
