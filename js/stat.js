@@ -33,44 +33,17 @@ window.renderStatistics = function (ctx, names, times) {
   var initialX = 120;
   var initialY = 0;
   ctx.translate(0, 240); // new point 'zero'
-  // Correct cycle, as I think. But not printing blue histogram with random transparency
-  /* for (var k = 0; k < times.length; k++) { // cycle of printing all gamers times histogram
-    var randomNumber = Math.random();
-    randomNumber = randomNumber / (randomNumber++);
+  // Cycle printing blue histogram with random transparency
+  for (var k = 0; k < times.length; k++) {
     ctx.fillText(names[k], initialX + indent * k, indent / 2);
     if (names[k] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1.0)';
       ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
       ctx.fillStyle = 'black';
     } else {
-      ctx.fillStyle = 'rgba( 0, 0, 255, randomNumber)';
+      ctx.fillStyle = 'rgba( 0, 0, 255, ' + Math.random() + ')';
       ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
       ctx.fillStyle = 'black';
-    }
-  }*/
-  // Not correct cycle, as I think, but doing ALL what they want
-  for (var k = 0; k < times.length; k++) { // cycle of printing all gamers times histogram
-    ctx.fillText(names[k], initialX + indent * k, indent / 2);
-    if (names[k] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1.0)';
-      ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
-      ctx.fillStyle = 'black';
-    } else {
-      if (names[k] === 'Катя') {
-        ctx.fillStyle = 'rgba( 0, 0, 255, 0.2)';
-        ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
-        ctx.fillStyle = 'black';
-      } else {
-        if (names[k] === 'Игорь') {
-          ctx.fillStyle = 'rgba( 0, 0, 255, 0.8)';
-          ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
-          ctx.fillStyle = 'black';
-        } else {
-          ctx.fillStyle = 'rgba( 0, 0, 255, 0.5)';
-          ctx.fillRect(initialX + indent * k, initialY, barWidth, times[k] * -step);
-          ctx.fillStyle = 'black';
-        }
-      }
     }
   }
 };
